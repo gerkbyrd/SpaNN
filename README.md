@@ -21,7 +21,7 @@ https://github.com/inspire-group/PatchGuard/tree/master
 For attacks on CIFAR-10 it is necessary to download the resnet50_192_cifar.pth file from https://github.com/inspire-group/PatchGuard/tree/master and place it in the checkpoints folder
 For attacks on INRIA and Pascal VOC it is necessary to follow the instructions on https://github.com/Zhang-Jack/adversarial_yolo2 to download the yolo.weights file into the weights folder
 
-
+![SpaNN (2)](https://github.com/user-attachments/assets/114d6bd4-be1d-42c8-83c6-4e032314b485)
 ## EXAMPLE COMMANDS
 Run SpaNN on effective single-patch attacks on INRIA using default settings (with an attack detection threshold of 0.5):
 ```
