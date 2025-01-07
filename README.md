@@ -26,7 +26,8 @@ For attacks on INRIA and Pascal VOC it is necessary to follow the instructions o
 
 
 ![SpaNN (2)](https://github.com/user-attachments/assets/114d6bd4-be1d-42c8-83c6-4e032314b485)
-Illustration of SpaNN: For any input $X$, after extracting a feature map $M$ from the shallow layers of the victim model $h$, a binarized feature map $B_b$ is obtained for each threshold $\beta_b$ in the set $\mathcal{B}$. DBSCAN is applied to each element in the ensemble, and the resulting clustering features $s$ are fed to the neural network $AD$, which outputs an attack detection score~$AD(s)$.
+Illustration of SpaNN: For any input $X$, after extracting a feature map $M$ from the shallow layers of the victim model $h$, a binarized feature map $B_b$ is obtained for each threshold $\beta_b$ in the set $\mathcal{B}$. DBSCAN is applied to each element in the ensemble, and the resulting clustering features $s$ are fed to the neural network $AD$, which outputs an attack detection score $AD(s)$.
+
 ## EXAMPLE COMMANDS
 Run SpaNN on effective single-patch attacks on INRIA using default settings (with an attack detection threshold of 0.5):
 ```
