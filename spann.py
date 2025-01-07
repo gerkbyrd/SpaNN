@@ -333,6 +333,17 @@ elif args.dataset in ['cifar', 'imagenet']:
             kount=kount+1
             if args.ground_truth is not None:
                 labelfile=os.path.abspath(os.path.join(args.ground_truth, imgfile.split('.')[0] + '.npy'))
+                label=np.load(labelfile)
+            else:
+                #can do this as long as we deal only with images where the victim model predicts the right label when there is no attack (as the ones in the repository)
+                imgfilelab = os.path.abspath(os.path.join(imgdir, imgfile))
+                datalab = Image.open(imgfilelab).convert("RGB")
+                datalab = ds_transforms(datalab).cuda()
+                output_clean, feature_map = model(datalab.unsqueeze(0).detach())
+                output_clean, feature_map = output_clean.detach().cpu().numpy()[0], feature_map.detach().cpu().numpy()[0]
+                global_feature = np.mean(output_clean, axis=(0,1))
+                pred_list = np.argsort(global_feature,kind='stable')
+                label = pred_list[-1]
             if args.clean:
                 imgfile = os.path.abspath(os.path.join(imgdir, imgfile))
                 data = Image.open(imgfile).convert("RGB")
@@ -344,17 +355,6 @@ elif args.dataset in ['cifar', 'imagenet']:
 
             gt_mask=np.zeros((data.shape[1], data.shape[2]))
             data = data.unsqueeze(0)
-            if args.ground_truth is None:
-                imgfile = os.path.abspath(os.path.join(imgdir, imgfile))
-                data = Image.open(imgfile).convert("RGB")
-                data = ds_transforms(data).cuda()
-                output_clean, feature_map = model(data)
-                output_clean, feature_map = output_clean.detach().cpu().numpy()[0], feature_map.detach().cpu().numpy()[0]
-                global_feature = np.mean(output_clean, axis=(0,1))
-                pred_list = np.argsort(global_feature,kind='stable')
-                label = pred_list[-1]
-            else:
-                label=np.load(labelfile)
 
             output_clean, feature_map = model(data)
             output_clean, feature_map = output_clean.detach().cpu().numpy()[0], feature_map.detach().cpu().numpy()[0]
@@ -443,7 +443,7 @@ if args.geteff:
         fname = fname + '_clean'
     with open(fname + '.npy', 'wb') as f:
         np.save(f, np.array(all_atk))
-
+print(kount)
 line1="Unsuccesful Attacks:"+str(clean_corr/max(1,kount))
 line2="Detected Attacks:" + str(detected/max(1,kount))
 line3="Successful Attacks:" + str(success_atk/max(1,kount))
