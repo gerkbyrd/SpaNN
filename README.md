@@ -2,26 +2,26 @@
 This repository contains the PyTorch implementation of SpaNN, organized as follows:
 
 directories:
-
-cfg: contains cfg files for possible object detection victim models (YOLOv2 by default)
-checkpoints: contains the weights for the AD attack detector net. The weights for ResNet50 on CIFAR-10 should be placed in this folder.
-data: contains the folder structure required to run SpaNN on the datasets introduced in the paper. Due to the file size, only a small amount of examples are included for each dataset.
-nets: torch models for AD and ResNet50
-utils: contains utils.py, a file with helper functions of object detection.
-weights: the weights for YOLOv2 should be placed in this folder.
+- cfg: contains cfg files for possible object detection victim models (YOLOv2 by default)
+- checkpoints: contains the weights for the AD attack detector net. The weights for ResNet50 on CIFAR-10 should be placed in this folder.
+- data: contains the folder structure required to run SpaNN on the datasets introduced in the paper. Due to the file size, only a small amount of examples are included for each dataset.
+- net_train_data: feature maps to train AD from scratch. 
+- nets: torch models for AD and ResNet50.
+- utils: contains utils.py, a file with helper functions of object detection.
+- weights: the weights for YOLOv2 should be placed in this folder.
 
 files:
-
-cfg.py, darknet.py, region_loss.py: files required to run YOLOv2 using PyTorch.
-helper.py: various helper functions to perform object detection.
-spann.py: main code to run and evaluate attack detection using SpaNN
+- cfg.py, darknet.py, region_loss.py: files required to run YOLOv2 using PyTorch.
+- helper.py: various helper functions to perform object detection.
+- spann.py: main code to run and evaluate attack detection using SpaNN
 
 Our code is based on the following publicly available repositories:
 
-https://github.com/Zhang-Jack/adversarial_yolo2
-https://github.com/inspire-group/PatchGuard/tree/master
+- https://github.com/Zhang-Jack/adversarial_yolo2
+- https://github.com/inspire-group/PatchGuard/tree/master
 
-For attacks on CIFAR-10 it is necessary to download the resnet50_192_cifar.pth file from https://github.com/inspire-group/PatchGuard/tree/master and place it in the checkpoints folder
+For attacks on CIFAR-10 it is necessary to download the resnet50_192_cifar.pth file from https://github.com/inspire-group/PatchGuard/tree/master and place it in the checkpoints folder.
+
 For attacks on INRIA and Pascal VOC it is necessary to follow the instructions on https://github.com/Zhang-Jack/adversarial_yolo2 to download the yolo.weights file into the weights folder
 
 
