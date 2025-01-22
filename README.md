@@ -62,7 +62,7 @@ python spann.py --imgdir data/inria/clean --patch_imgdir data/inria/1p --dataset
 ```
 Note that the "ensemble_step" determines the size of the ensmeble used for detection, and thus it also indicates which saved weightfile must be used on the attack detector AD. The weightfile of AD will also depend on the dataset/task, for example, to run the SpaNN configuration from the command above on ImageNet, for attacks with four patches:
 ```
-python spann.py --imgdir data/imagenet/clean --patch_imgdir data/imagenet/4p --dataset imagenet --det_net_path checkpoints/final_classification/2dcnn_raw_imagenet_10_atk_det.pth --det_net 2dcnn_raw --ensemble_step 10 --effective_files effective_1p.npy --n_patches 1
+python spann.py --imgdir data/imagenet/clean --patch_imgdir data/imagenet/4p --dataset imagenet --det_net_path checkpoints/final_classification/2dcnn_raw_imagenet_10_atk_det.pth --det_net 2dcnn_raw --ensemble_step 10 --effective_files effective_4p.npy --n_patches 4
 ```
 Refer to spann.py for further customization options.
 
